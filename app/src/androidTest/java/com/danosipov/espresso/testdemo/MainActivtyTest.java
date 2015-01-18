@@ -30,6 +30,6 @@ public class MainActivtyTest extends ActivityInstrumentationTestCase2<MainActivi
     }
 
     public void testListGoesOverTheFold() {
-        onView(withText("Hello world")).check(matches(isDisplayed()));
+        onView(withText("Hello world!")).check(matches(isDisplayed()));
     }
 }
