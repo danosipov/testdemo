@@ -1,6 +1,7 @@
 package com.danosipov.testdemo.test;
 
 import android.app.Activity;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.danosipov.testdemo.MainActivity;
@@ -13,6 +14,7 @@ import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
 @Config(emulateSdk = 18, manifest = "app/src/main/AndroidManifest.xml")
@@ -20,12 +22,8 @@ import static org.junit.Assert.assertThat;
 public class MainActivityTest {
 
     @Test
-    public void clickingButton_shouldChangeResultsViewText() throws Exception {
+    public void launchedActivity_shouldNotBeNull() throws Exception {
         Activity activity = Robolectric.buildActivity(MainActivity.class).create().get();
-        assert(activity != null);
-        TextView results = (TextView) activity.findViewById(R.id.helloworld);
-
-        String resultsText = results.getText().toString();
-        assertThat(resultsText, equalTo("Hello world!"));
+        assertThat(activity, notNullValue());
     }
 }
