@@ -34,6 +34,7 @@ android {
     }
 }
 
+// Differentiate between unit tests and integration tests based on package
 robolectric {
     include '**/*Test.class'
     exclude '**/espresso/**/*.class'
@@ -53,6 +54,7 @@ dependencies {
     androidTestCompile('com.android.support.test:testing-support-lib:0.1') {
         exclude group: 'junit'
     }
+    // Unit testing, Robolectric
     androidTestCompile('org.robolectric:robolectric:2.4') {
         exclude module: 'classworlds'
         exclude module: 'commons-logging'
@@ -70,19 +72,9 @@ dependencies {
         exclude module: 'wagon-http-lightweight'
         exclude module: 'wagon-provider-api'
     }
-    // Robolectric dependencies
+    // Mockito for mocking
     androidTestCompile 'org.mockito:mockito-core:1.10.19'
 }
-
-// Attempt to get the resources copied to get rid of res.Resources$NotFoundException
-// Hack to place the manifest in a place where Robolectric will pick it up
-// no matter where its executed from (command line or Studio)
-//task copyTestResources(type: Copy) {
-//    from "${projectDir}/src/main/"
-//    into "${projectDir}/../"
-//    include "AndroidManifest.xml"
-//}
-//test.dependsOn copyTestResources
 
 apply plugin: 'idea'
 
